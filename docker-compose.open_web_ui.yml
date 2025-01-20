@@ -1,0 +1,19 @@
+services:
+  openWebUI:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "8080:8080"
+    networks:
+      - opensearch-net
+    restart: unless-stopped
+    volumes:
+      - ./open-webui-local:/app/backend/data
+    environment:
+      OLLAMA_BASE_URLS: http://ollama:11434
+
+networks:
+  opensearch-net:
+    external: true
+
+volumes:
+  ollama_model:

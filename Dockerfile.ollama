@@ -1,0 +1,23 @@
+# ./Dockerfile.ollama
+FROM ollama/ollama:latest
+
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+# Copy the start script into the container
+COPY ./start_ollama.sh /usr/local/bin/start_ollama.sh
+
+# Make sure the script is executable
+RUN chmod +x /usr/local/bin/start_ollama.sh
+
+# Set the environment variable for the model storage path
+ENV OLLAMA_MODEL_PATH=/models
+
+# Expose the necessary port for the Ollama service
+EXPOSE 11434
+
+# Override the ENTRYPOINT to prevent 'ollama' from being prefixed
+ENTRYPOINT []
+
+# Set the default command to run your script
+CMD ["/usr/local/bin/start_ollama.sh"]

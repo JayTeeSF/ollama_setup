@@ -1,0 +1,26 @@
+services:
+  ollama:
+    image: ollama:custom
+    build:
+      context: .
+      dockerfile: ./Dockerfile.ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"  # Expose the service on port externally, port 11434 internally
+    environment:
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2}
+    networks:
+      - opensearch-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://ollama:11434"]
+      interval: 30s
+      retries: 20
+    volumes:
+      - ollama_model:/models  # Mount the volume for persistent model storage
+
+networks:
+  opensearch-net:
+    external: true
+
+volumes:
+  ollama_model:
