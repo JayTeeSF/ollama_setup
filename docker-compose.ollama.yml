@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.ollama
-    restart: unless-stopped
+    restart: no
     ports:
       - "11434:11434"  # Expose the service on port externally, port 11434 internally
     environment:
@@ -12,7 +12,8 @@ services:
     networks:
       - opensearch-net
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://ollama:11434"]
+      # test: ["CMD", "true"]
+      test: ["CMD", "curl", "-f", "http://localhost:11434"]
       interval: 30s
       retries: 20
     volumes:
