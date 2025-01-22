@@ -8,7 +8,7 @@ services:
     ports:
       - "11434:11434"  # Expose the service on port externally, port 11434 internally
     environment:
-      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.2}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-deepseek-r1}
     networks:
       - opensearch-net
     healthcheck:
