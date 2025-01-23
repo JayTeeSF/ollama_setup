@@ -1,5 +1,7 @@
 OLLAMA_MODEL="$1"
 # OLLAMA_MODEL="llama3.2" #deepseek-r1"
+ADMIN_USER_EMAIL="jaytee+ollama@jayteesf.com"
+ADMIN_USER_PASSWORD="ollama"
 if [ -z "$OLLAMA_MODEL" ]; then
   OLLAMA_MODEL="llama3.2"
   echo "Usage: $0 <model: ${OLLAMA_MODEL} || deepseek-r1>"
