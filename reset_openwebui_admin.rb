@@ -12,7 +12,7 @@ require 'json'
 # Grab command-line args or set defaults
 email = ARGV[0] || 'admin@example.com'
 host  = ARGV[1] || 'localhost'
-port  = ARGV[2] || '8080'
+port  = ARGV[2] || '8081'
 password = 'ollama'
 
 if password.nil? || password.empty?
